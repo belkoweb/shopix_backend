@@ -40,10 +40,11 @@ public class Produit {
 	    private Fournisseur fournisseur;
 	    @ManyToOne
 	    private Domaine domaine;
-		public Produit(String ref, String libelle, String marque, String description, double prix) {
+		public Produit(String ref, String libelle,String image, String marque, String description, double prix) {
 			super();
 			this.ref = ref;
 			this.libelle = libelle;
+			this.image = image;
 			this.marque = marque;
 			this.description = description;
 			this.prix = prix;

@@ -18,6 +18,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+
 public class Domaine {
 	 @Id @GeneratedValue(strategy = GenerationType.AUTO )
 		private Long id;

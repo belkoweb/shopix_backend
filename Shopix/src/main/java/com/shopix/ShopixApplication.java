@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.shopix.beans.Categorie;
 import com.shopix.beans.Domaine;
@@ -54,15 +55,25 @@ public class ShopixApplication implements CommandLineRunner {
 	   fournisseurDao.save(fournisseur1);
 	   fournisseurDao.save(fournisseur2);
 	   fournisseurDao.save(fournisseur3);
-	   Produit p1 = new Produit("x-1","strix g", "asus","a gamer pc", 2000);
-	   Produit p2 = new Produit("x-2","zeferus", "asus","a gamer pc", 3000);
-	   Produit p3 = new Produit("x-3","zen-book", "asus","a desktop pc", 4000);
+	   Produit p1 = new Produit("x-1","Accer 512 ","assets/images/img-1.png", "Accer","a gamer pc", 2000);
+	   Produit p2 = new Produit("x-2","HP Omen","assets/images/img-2.png", "HP","a gamer pc", 3000);
+	   Produit p3 = new Produit("x-3","Macbook Pro","assets/images/laptop.png", "Apple","a desktop pc", 3000);
+	   Produit p4 = new Produit("x-4","Rog Strix G","assets/images/img-3.png", "Asus","a desktop pc", 4000);
+	   Produit p5 = new Produit("x-5","Iphone 11 Pro Max","assets/images/img-4.png", "Apple","a desktop pc", 5000);
 	   p3.setFournisseur(fournisseur2);
 	   p2.setFournisseur(fournisseur3);
 	   p1.setFournisseur(fournisseur1);
+	   p4.setFournisseur(fournisseur1);
+	   p5.setFournisseur(fournisseur2);
 	   produitDao.save(p1);
 	   produitDao.save(p2);
 	   produitDao.save(p3);
+	   produitDao.save(p4);
+	   produitDao.save(p5);
+	   
+	   
+	   
+	   
 	}
 
 }

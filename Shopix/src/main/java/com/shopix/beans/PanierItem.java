@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,5 +26,6 @@ public class PanierItem {
 	    private double prixPiece;
 	    private double total;
 	    @ManyToOne
+	    @JsonProperty(access = Access.WRITE_ONLY)
 	    private Panier panier;
 }
