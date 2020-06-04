@@ -1,10 +1,15 @@
 package com.shopix.beans;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,9 +25,12 @@ public class CommandeItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private int nbrPiece;
-	private double prixPiece;
-	private double total;
 	@ManyToOne
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private Produit produit;
+	private int qte;
+	@ManyToOne
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Commande commande;
+
 }

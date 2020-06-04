@@ -8,6 +8,6 @@ import com.shopix.beans.User;
 public interface CommandeService {
 public Commande findByref(String ref);
 public Collection<Commande>  findAllByUser(User user);
-public int save(Commande commande);
 public Collection<Commande> findAll();
+public int save(String email, String password, Commande commande);
 }

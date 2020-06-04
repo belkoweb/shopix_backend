@@ -1,7 +1,5 @@
 package com.shopix.beans;
 
-import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,14 +14,15 @@ import lombok.ToString;
 @Entity
 @Data
 @AllArgsConstructor
-@NoArgsConstructor  
+@NoArgsConstructor
 @ToString
 public class UserRole {
-	 @Id @GeneratedValue(strategy = GenerationType.AUTO )
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	 @ManyToOne
+	@ManyToOne
 	private Role role;
 	@ManyToOne
 	private User user;
- 
+
 }

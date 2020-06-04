@@ -3,6 +3,7 @@ package com.shopix.rest;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,10 +16,15 @@ import com.shopix.beans.User;
 import com.shopix.service.CommandeService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/shopix-api/commandes")
 public class CommandeRest {
 @Autowired
 private CommandeService commandeService;
+@PostMapping("/email/{email}/password/{password}")
+public int save(@PathVariable String email,@PathVariable String password,@RequestBody Commande commande) {
+	return commandeService.save(email, password, commande);
+}
 @GetMapping("/")
 public Collection<Commande> findAll() {
 	return commandeService.findAll();
@@ -31,8 +37,5 @@ public Commande findByref(@PathVariable String ref) {
 public Collection<Commande> findAllByUser(@RequestBody User user) {
 	return commandeService.findAllByUser(user);
 }
-@PostMapping("/")
-public int save(@RequestBody Commande commande) {
-	return commandeService.save(commande);
-}
+
 }

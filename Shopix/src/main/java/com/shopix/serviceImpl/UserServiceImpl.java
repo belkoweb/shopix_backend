@@ -6,10 +6,11 @@ import org.springframework.stereotype.Service;
 import com.shopix.beans.User;
 import com.shopix.dao.UserDao;
 import com.shopix.service.UserService;
+
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 	@Autowired
-     private UserDao userDao;
+	private UserDao userDao;
 	@Override
 	public User findByNom(String nom) {
 		return userDao.findByNom(nom);
@@ -23,6 +24,19 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User findByEmailAndPassword(String email, String password) {
 		return userDao.findByEmailAndPassword(email, password);
+	}
+
+	@Override
+	public int save(User user) {
+
+		User userLoaded = findByEmail(user.getEmail());
+		if (userLoaded != null) {
+			return -1;
+		} else {
+			userDao.save(user);
+			return 1;
+
+		}
 	}
 
 }

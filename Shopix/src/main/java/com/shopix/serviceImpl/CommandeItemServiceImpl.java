@@ -19,13 +19,15 @@ public class CommandeItemServiceImpl implements CommandeItemService{
 	
 	@Override
 	public int save(Commande commande, Collection<CommandeItem> commandeItems) {
-		commandeDao.save(commande);
-	    System.out.println("saving the commande");
-		for (CommandeItem commandeItem : commandeItems) {
-			commandeItem.setCommande(commande);
-			commandeItem.setTotal(commandeItem.getPrixPiece()*commandeItem.getNbrPiece());
-			commandeItemDao.save(commandeItem);
-		}
+//		commandeDao.save(commande);
+//	    System.out.println("saving the commande");
+//		for (CommandeItem commandeItem : commandeItems) {
+//			System.out.println("*********************************************************");
+//			System.out.println(commandeItem.getNbrPiece());
+//			commandeItem.setCommande(commande);
+//			commandeItem.setTotal(commandeItem.getPrixPiece()*commandeItem.getNbrPiece());
+//			commandeItemDao.save(commandeItem);
+//		}
 		return 1;
 	}
 
