@@ -2,6 +2,8 @@ package com.shopix.beans;
 
 import javax.persistence.Entity;
 
+
+import java.util.Collection;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,12 +27,11 @@ public class CommandeItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@ManyToOne
-	@JsonProperty(access = Access.WRITE_ONLY)
-	private Produit produit;
 	private int qte;
 	@ManyToOne
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Commande commande;
+	@OneToMany(mappedBy = "commandeItem")
+	private Collection<Produit> produit;
 
 }

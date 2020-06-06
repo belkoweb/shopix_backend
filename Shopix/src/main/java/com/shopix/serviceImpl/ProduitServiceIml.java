@@ -22,4 +22,10 @@ public class ProduitServiceIml implements ProduitService{
 		return produitDao.findByLibelle(libelle);
 	}
 
+	@Override
+	public Produit update(Long id, Produit produit) {
+		produit.setId(id);
+		return produitDao.save(produit);
+	}
+
 }

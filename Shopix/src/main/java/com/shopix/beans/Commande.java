@@ -1,6 +1,7 @@
 package com.shopix.beans;
 
 import java.util.Collection;
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -31,6 +32,7 @@ public class Commande {
 	    private double total;
 	    private Date date = new Date();
 	    @ManyToOne
+	   
 	    private User user;
 	    @OneToMany(mappedBy = "commande")
 	    @JsonProperty(access = Access.WRITE_ONLY)

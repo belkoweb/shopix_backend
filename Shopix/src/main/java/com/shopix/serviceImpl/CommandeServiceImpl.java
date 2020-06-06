@@ -14,6 +14,7 @@ import com.shopix.dao.CommandeItemDao;
 import com.shopix.dao.ProduitDao;
 import com.shopix.dao.UserDao;
 import com.shopix.service.CommandeService;
+import com.shopix.service.ProduitService;
 import com.shopix.service.UserService;
 
 @Service
@@ -49,17 +50,15 @@ public class CommandeServiceImpl implements CommandeService {
 		System.out.println(commande.getCommandeItems());
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		calculerTotal(commande, commande.getCommandeItems());
-		
-		for (CommandeItem commandeItem : commande.getCommandeItems()) {
-			System.out.println("commande Item ========================================");
-			System.out.println(commandeItem);
-			Produit produit = commandeItem.getProduit();
-			produitDao.save(produit);
-			commandeItem.setCommande(commande);
-			commandeItem.setProduit(produit);
-			commandeItemDao.save(commandeItem);
-			
 
+		for (CommandeItem commandeItem : commande.getCommandeItems()) {
+			commandeItem.setCommande(commande);
+//			Produit produit = produitDao.findByRef(commandeItem.getProduit());
+//			System.out.println(produit);
+//			if(produit == null) {
+//				 produitDao.save(commandeItem.getProduit());
+			
+			commandeItemDao.save(commandeItem);
 		}
 		commandeDao.save(commande);
 		return 1;

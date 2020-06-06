@@ -41,17 +41,9 @@ public class Produit {
 	private Fournisseur fournisseur;
 	@ManyToOne
 	private Domaine domaine;
-	@OneToMany(mappedBy = "produit")
-	private Collection<CommandeItem> commandeItems;
+	@ManyToOne
+	private CommandeItem commandeItem;
 
-	public Produit(String ref, String libelle, String image, String marque, String description, double prix) {
-		super();
-		this.ref = ref;
-		this.libelle = libelle;
-		this.image = image;
-		this.marque = marque;
-		this.description = description;
-		this.prix = prix;
-	}
+	
 
 }
