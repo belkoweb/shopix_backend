@@ -31,7 +31,7 @@ public class CommandeItem {
 	@ManyToOne
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Commande commande;
-	@OneToMany(mappedBy = "commandeItem")
-	private Collection<Produit> produit;
+	@ManyToOne
+	private Produit produit;
 
 }

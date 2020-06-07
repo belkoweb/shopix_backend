@@ -41,9 +41,18 @@ public class Produit {
 	private Fournisseur fournisseur;
 	@ManyToOne
 	private Domaine domaine;
-	@ManyToOne
-	private CommandeItem commandeItem;
+	@OneToMany
+	private Collection<CommandeItem> commandeItems;
+	public Produit(String ref, String libelle, String marque, String description, String image, double prix) {
+		super();
+		this.ref = ref;
+		this.libelle = libelle;
+		this.marque = marque;
+		this.description = description;
+		this.image = image;
+		this.prix = prix;
+	}
 
 	
-
+   
 }

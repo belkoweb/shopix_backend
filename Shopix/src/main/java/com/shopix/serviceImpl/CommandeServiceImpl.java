@@ -53,21 +53,25 @@ public class CommandeServiceImpl implements CommandeService {
 
 		for (CommandeItem commandeItem : commande.getCommandeItems()) {
 			commandeItem.setCommande(commande);
-//			Produit produit = produitDao.findByRef(commandeItem.getProduit());
-//			System.out.println(produit);
-//			if(produit == null) {
-//				 produitDao.save(commandeItem.getProduit());
-			
-			commandeItemDao.save(commandeItem);
+		Produit produit = produitDao.findByRef(commandeItem.getProduit().getRef());
+		System.out.println(produit);
+		if(produit == null) {
+		
+	    produitDao.save(commandeItem.getProduit());
+		
+		}
+	    commandeItem.setProduit(produit);
+		commandeItemDao.save(commandeItem);
 		}
 		commandeDao.save(commande);
 		return 1;
+		
 	}
 
 	private void calculerTotal(Commande commande, Collection<CommandeItem> commandeItems) {
 		double total = 0;
 		for (CommandeItem commandeItem : commandeItems) {
-			total += commandeItem.getProduit().getPrix() * commandeItem.getQte();
+		total += commandeItem.getProduit().getPrix() * commandeItem.getQte();
 		}
 		commande.setTotal(total);
 	}
