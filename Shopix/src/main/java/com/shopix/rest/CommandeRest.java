@@ -23,7 +23,7 @@ public class CommandeRest {
 @Autowired
 private CommandeService commandeService;
 @PostMapping("/email/{email}/password/{password}")
-public ResponseEntity<?> save(@PathVariable String email,@PathVariable String password,@RequestBody Commande commande) {
+public int save(@PathVariable String email,@PathVariable String password,@RequestBody Commande commande) {
 	return commandeService.save(email, password, commande);
 }
 @GetMapping("/")

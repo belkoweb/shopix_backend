@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,10 +34,13 @@ public class User {
  private String tel;
  private boolean active;
  @OneToMany(mappedBy = "user")
+ @JsonProperty(access = Access.WRITE_ONLY)
  private Collection<Commande> commandes;
  @OneToMany(mappedBy = "user")
+ @JsonProperty(access = Access.WRITE_ONLY)
  private Collection<UserRole>  userRoles;
  @OneToMany(mappedBy = "user")
+ @JsonProperty(access = Access.WRITE_ONLY)
  private Collection<Adresse> adresses;
  @OneToOne
  private Panier panier;

@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,7 +45,9 @@ public class Produit {
 	@ManyToOne
 	private Domaine domaine;
 	@OneToMany
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Collection<CommandeItem> commandeItems;
+
 	public Produit(String ref, String libelle, String marque, String description, String image, double prix) {
 		super();
 		this.ref = ref;
@@ -53,6 +58,4 @@ public class Produit {
 		this.prix = prix;
 	}
 
-	
-   
 }

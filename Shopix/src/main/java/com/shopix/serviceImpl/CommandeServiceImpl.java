@@ -3,8 +3,6 @@ package com.shopix.serviceImpl;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.shopix.beans.Commande;
@@ -16,7 +14,6 @@ import com.shopix.dao.CommandeItemDao;
 import com.shopix.dao.ProduitDao;
 import com.shopix.dao.UserDao;
 import com.shopix.service.CommandeService;
-import com.shopix.service.ProduitService;
 import com.shopix.service.UserService;
 
 @Service
@@ -42,8 +39,23 @@ public class CommandeServiceImpl implements CommandeService {
 		return commandeDao.findAllByUser(user);
 	}
 
+
+
+	private void calculerTotal(Commande commande, Collection<CommandeItem> commandeItems) {
+		double total = 0;
+		for (CommandeItem commandeItem : commandeItems) {
+			total += commandeItem.getProduit().getPrix() * commandeItem.getQte();
+		}
+		commande.setTotal(total);
+	}
+
 	@Override
-	public ResponseEntity<?> save(String email, String password, Commande commande) {
+	public Collection<Commande> findAll() {
+		return commandeDao.findAll();
+	}
+
+	@Override
+	public int save(String email, String password, Commande commande) {
 		User user = userService.findByEmailAndPassword(email, password);
 		Commande res = findByref(commande.getRef());
 		if (user != null) {
@@ -67,30 +79,16 @@ public class CommandeServiceImpl implements CommandeService {
 						commandeItemDao.save(commandeItem);
 					}
 				} else {
-					return new ResponseEntity<>(HttpStatus.CONFLICT);
+					return -3;
 				}
 				commandeDao.save(commande);
 			} else {
-				return new ResponseEntity<>(HttpStatus.CONFLICT);
-			}
-			return null;
+				return -2;
+			       }
+			return 1;
 		} else {
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
+			return -1;
 		}
-
-	}
-
-	private void calculerTotal(Commande commande, Collection<CommandeItem> commandeItems) {
-		double total = 0;
-		for (CommandeItem commandeItem : commandeItems) {
-			total += commandeItem.getProduit().getPrix() * commandeItem.getQte();
-		}
-		commande.setTotal(total);
-	}
-
-	@Override
-	public Collection<Commande> findAll() {
-		return commandeDao.findAll();
 	}
 
 }

@@ -16,6 +16,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findByNom(String nom) {
+		
 		return userDao.findByNom(nom);
 	}
 
@@ -26,7 +27,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findByEmailAndPassword(String email, String password) {
-		return userDao.findByEmailAndPassword(email, password);
+		if(!email.equals("") || !password.equals("")) {
+			return userDao.findByEmailAndPassword(email, password);
+		}
+		return null;
 	}
 
 	@Override

@@ -3,8 +3,6 @@ package com.shopix.serviceImpl;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.shopix.beans.Adresse;
@@ -31,18 +29,20 @@ public class AdresseServiceImpl implements AdresseService {
 	}
 
 	@Override
-	public  ResponseEntity<?> save(String email, String password, Adresse adresse) {
+	public int save(String email, String password, Adresse adresse) {
 		User user = userService.findByEmailAndPassword(email, password);
 		Adresse res = adresseDao.findByadresse1(adresse.getAdresse1());
 		if (user != null) {
 			if(res == null) {
 				adresse.setUser(user);
 				adresseDao.save(adresse);
-				return new ResponseEntity<>(HttpStatus.ACCEPTED);
+				return 1;
 			}
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
+			return -1;
 		}
-           return new ResponseEntity<>(HttpStatus.CONFLICT);  
-		}
+           return -2;  
+	}
+
+	
 
 }

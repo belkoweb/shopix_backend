@@ -11,5 +11,5 @@ public interface CommandeService {
 public Commande findByref(String ref);
 public Collection<Commande>  findAllByUser(User user);
 public Collection<Commande> findAll();
-public ResponseEntity<?> save(String email, String password, Commande commande);
+public int save(String email, String password, Commande commande);
 }
