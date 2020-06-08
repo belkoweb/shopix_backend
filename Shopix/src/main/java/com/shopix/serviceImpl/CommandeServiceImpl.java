@@ -3,6 +3,8 @@ package com.shopix.serviceImpl;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.shopix.beans.Commande;
@@ -41,37 +43,47 @@ public class CommandeServiceImpl implements CommandeService {
 	}
 
 	@Override
-	public int save(String email, String password, Commande commande) {
+	public ResponseEntity<?> save(String email, String password, Commande commande) {
 		User user = userService.findByEmailAndPassword(email, password);
-		userDao.save(user);
-		commande.setUser(user);
-		commandeDao.save(commande);
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println(commande.getCommandeItems());
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		calculerTotal(commande, commande.getCommandeItems());
+		Commande res = findByref(commande.getRef());
+		if (user != null) {
+			if (commande != null && res == null) {
 
-		for (CommandeItem commandeItem : commande.getCommandeItems()) {
-			commandeItem.setCommande(commande);
-		Produit produit = produitDao.findByRef(commandeItem.getProduit().getRef());
-		System.out.println(produit);
-		if(produit == null) {
-		
-	    produitDao.save(commandeItem.getProduit());
-		
+				commande.setUser(user);
+				commandeDao.save(commande);
+				if (commande.getCommandeItems() != null) {
+
+					calculerTotal(commande, commande.getCommandeItems());
+					for (CommandeItem commandeItem : commande.getCommandeItems()) {
+						commandeItem.setCommande(commande);
+						Produit produit = produitDao.findByRef(commandeItem.getProduit().getRef());
+						if (produit == null) {
+
+							produitDao.save(commandeItem.getProduit());
+							produit = commandeItem.getProduit();
+
+						}
+						commandeItem.setProduit(produit);
+						commandeItemDao.save(commandeItem);
+					}
+				} else {
+					return new ResponseEntity<>(HttpStatus.CONFLICT);
+				}
+				commandeDao.save(commande);
+			} else {
+				return new ResponseEntity<>(HttpStatus.CONFLICT);
+			}
+			return null;
+		} else {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
-	    commandeItem.setProduit(produit);
-		commandeItemDao.save(commandeItem);
-		}
-		commandeDao.save(commande);
-		return 1;
-		
+
 	}
 
 	private void calculerTotal(Commande commande, Collection<CommandeItem> commandeItems) {
 		double total = 0;
 		for (CommandeItem commandeItem : commandeItems) {
-		total += commandeItem.getProduit().getPrix() * commandeItem.getQte();
+			total += commandeItem.getProduit().getPrix() * commandeItem.getQte();
 		}
 		commande.setTotal(total);
 	}

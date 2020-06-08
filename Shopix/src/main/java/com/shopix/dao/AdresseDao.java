@@ -8,5 +8,5 @@ import com.shopix.beans.Adresse;
 @RepositoryRestResource
 @CrossOrigin
 public interface AdresseDao  extends JpaRepository<Adresse, Long>{
-
+ public Adresse findByadresse1(String adresse1);
 }

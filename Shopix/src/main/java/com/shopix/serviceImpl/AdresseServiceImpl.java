@@ -3,12 +3,13 @@ package com.shopix.serviceImpl;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.shopix.beans.Adresse;
 import com.shopix.beans.User;
 import com.shopix.dao.AdresseDao;
-import com.shopix.dao.UserDao;
 import com.shopix.service.AdresseService;
 import com.shopix.service.UserService;
 
@@ -18,8 +19,6 @@ public class AdresseServiceImpl implements AdresseService {
 	private AdresseDao adresseDao;
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private UserDao userDao;
 
 	@Override
 	public Collection<Adresse> findAllByVille(String ville) {
@@ -32,14 +31,18 @@ public class AdresseServiceImpl implements AdresseService {
 	}
 
 	@Override
-	public int save(String email, String password, Adresse adresse) {
-		   User user = userService.findByEmailAndPassword(email, password);
-		   userDao.save(user);
-		   adresse.setUser(user);
-		   adresseDao.save(adresse);
-		   return 1;
-	}
-
-
+	public  ResponseEntity<?> save(String email, String password, Adresse adresse) {
+		User user = userService.findByEmailAndPassword(email, password);
+		Adresse res = adresseDao.findByadresse1(adresse.getAdresse1());
+		if (user != null) {
+			if(res == null) {
+				adresse.setUser(user);
+				adresseDao.save(adresse);
+				return new ResponseEntity<>(HttpStatus.ACCEPTED);
+			}
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}
+           return new ResponseEntity<>(HttpStatus.CONFLICT);  
+		}
 
 }

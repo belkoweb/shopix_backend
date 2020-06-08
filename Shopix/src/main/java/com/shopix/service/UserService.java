@@ -1,10 +1,12 @@
 package com.shopix.service;
 
+import org.springframework.http.ResponseEntity;
+
 import com.shopix.beans.User;
 
 public interface UserService {
 public User findByNom(String nom);
 public User findByEmail(String email);
 public User findByEmailAndPassword(String email,String password);
-public int save(User user);
+public ResponseEntity<?> save(User user);
 }

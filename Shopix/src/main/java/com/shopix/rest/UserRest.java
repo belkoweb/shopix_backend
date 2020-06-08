@@ -1,6 +1,7 @@
 package com.shopix.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,7 @@ public class UserRest {
 	@Autowired
 	private UserService userService;
 	@PostMapping("/")
-	public int save(@RequestBody User user) {
+	public ResponseEntity<?> save(@RequestBody User user) {
 		return userService.save(user);
 	}
 	@GetMapping("/nom/{nom}")

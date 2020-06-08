@@ -3,6 +3,7 @@ package com.shopix.rest;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,7 @@ public class CommandeRest {
 @Autowired
 private CommandeService commandeService;
 @PostMapping("/email/{email}/password/{password}")
-public int save(@PathVariable String email,@PathVariable String password,@RequestBody Commande commande) {
+public ResponseEntity<?> save(@PathVariable String email,@PathVariable String password,@RequestBody Commande commande) {
 	return commandeService.save(email, password, commande);
 }
 @GetMapping("/")

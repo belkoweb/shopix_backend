@@ -1,6 +1,7 @@
 package com.shopix.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class AdresseRest {
 private AdresseService adresseService;
 @CrossOrigin
 @PostMapping("/email/{email}/password/{password}")
-public int save(@PathVariable String email,@PathVariable String password,@RequestBody Adresse adresse) {
+public ResponseEntity<?> save(@PathVariable String email,@PathVariable String password,@RequestBody Adresse adresse) {
 	return adresseService.save(email, password, adresse);
 }
 
