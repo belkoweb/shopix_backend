@@ -1,5 +1,7 @@
 package com.shopix.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +17,12 @@ import com.shopix.service.ProduitService;
 public class ProduitRest {
  @Autowired
  private ProduitService produitService;
+@GetMapping("/")
+ public List<Produit> findAll() {
+	return produitService.findAll();
+}
 
- @GetMapping("/ref/{ref}")
+@GetMapping("/ref/{ref}")
 public Produit findByRef(@PathVariable("ref")String ref) {
 	return produitService.findByRef(ref);
 }

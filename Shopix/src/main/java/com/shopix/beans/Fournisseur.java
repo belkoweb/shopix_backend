@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +29,7 @@ public class Fournisseur {
 	    private String tel;
 	    private String description;
 	    @OneToMany(mappedBy = "fournisseur")
+	    @JsonProperty(access = Access.WRITE_ONLY)
 	    private Collection<Produit> produits;
 		public Fournisseur(String nom, String email, String tel) {
 			super();

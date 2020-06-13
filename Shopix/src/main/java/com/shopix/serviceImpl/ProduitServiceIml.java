@@ -1,5 +1,7 @@
 package com.shopix.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,12 @@ public class ProduitServiceIml implements ProduitService{
 	public Produit update(Long id, Produit produit) {
 		produit.setId(id);
 		return produitDao.save(produit);
+	}
+
+	@Override
+	public List<Produit> findAll() {
+		// TODO Auto-generated method stub
+		return produitDao.findAll();
 	}
 
 }
