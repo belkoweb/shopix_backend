@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.shopix.beans.Panier;
 import com.shopix.beans.PanierItem;
 import com.shopix.dao.PanierDao;
+import com.shopix.dao.ProduitDao;
 import com.shopix.service.PanierItemService;
 import com.shopix.service.PanierService;
 
@@ -19,7 +20,7 @@ public class PanierServiceImpl implements PanierService {
 	private PanierDao panierDao;
 	@Autowired
 	private PanierItemService panierItemService;
-
+   
 	@Override
 	public int save(Panier panier) {
 		System.out.println("this is not working motherfucker");
@@ -47,5 +48,7 @@ public class PanierServiceImpl implements PanierService {
 	public Collection<Panier> findAll() {
 		return panierDao.findAll();
 	}
+
+
 
 }
