@@ -1,8 +1,7 @@
 package com.shopix.service;
 
 import java.util.Collection;
-
-import org.springframework.http.ResponseEntity;
+import java.util.List;
 
 import com.shopix.beans.Commande;
 import com.shopix.beans.User;
@@ -12,4 +11,7 @@ public Commande findByref(String ref);
 public Collection<Commande>  findAllByUser(User user);
 public Collection<Commande> findAll();
 public int save(String email, String password, Commande commande);
+public Long nbrCommandes();
+
+public Long countByEtatCommande(String etatCommande);
 }

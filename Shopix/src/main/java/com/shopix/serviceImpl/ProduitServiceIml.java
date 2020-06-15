@@ -7,9 +7,12 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shopix.beans.Categorie;
 import com.shopix.beans.CommandeItem;
+import com.shopix.beans.Domaine;
 import com.shopix.beans.Produit;
 import com.shopix.beans.Propriete;
+import com.shopix.dao.CategorieDao;
 import com.shopix.dao.CommandeItemDao;
 import com.shopix.dao.ProduitDao;
 import com.shopix.dao.ProprieteDao;
@@ -23,6 +26,8 @@ public class ProduitServiceIml implements ProduitService {
 	ProprieteDao proprieteDao;
 	@Autowired
 	CommandeItemDao commandeItemDao;
+	@Autowired
+	CategorieDao categorieDao;
 
 	@Override
 	public Produit findByRef(String ref) {
@@ -65,6 +70,37 @@ public class ProduitServiceIml implements ProduitService {
 			}
 			produitDao.deleteById(produit.getId());
 		}
+	}
+
+	@Override
+	public Long nombreProduit() {
+		// TODO Auto-generated method stub
+		return produitDao.count();
+	}
+
+	@Override
+	public Produit save(Produit produit) {
+		// TODO Auto-generated method stub
+		Produit prod = findByLibelle(produit.getLibelle());
+		if (prod != null) {
+			return null;
+		} else {
+			return produitDao.save(produit);
+		}
+	}
+
+	@Override
+	public List<Produit> findByCategorie(String categorie) {
+		// TODO Auto-generated method stub
+		Categorie cat = categorieDao.findByNom(categorie);
+		List<Produit> prod = produitDao.findByCategorie(cat);
+		return prod;
+	}
+
+	@Override
+	public List<Produit> findByPrixLessThan(double prix) {
+		// TODO Auto-generated method stub
+		return produitDao.findByPrixLessThan(prix);
 	}
 
 }

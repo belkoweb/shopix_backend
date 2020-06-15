@@ -1,5 +1,7 @@
 package com.shopix.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,11 @@ import com.shopix.service.DomaineService;
 public class DomaineRest {
 	@Autowired
 	private DomaineService domaineService;
-    @GetMapping("/nom/{nom}")
+	@GetMapping("/")
+    public List<Domaine> findAll() {
+		return domaineService.findAll();
+	}
+	@GetMapping("/nom/{nom}")
 	public Domaine findByNom(@PathVariable("nom")String nom) {
 		return domaineService.findByNom(nom);
 	}

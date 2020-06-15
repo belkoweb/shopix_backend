@@ -91,4 +91,24 @@ public class CommandeServiceImpl implements CommandeService {
 		}
 	}
 
+	@Override
+	public Long nbrCommandes() {
+		// TODO Auto-generated method stub
+		return commandeDao.count();
+	}
+
+	@Override
+	public Long countByEtatCommande(String etatCommande) {
+		// TODO Auto-generated method stub
+		Long res = commandeDao.countByEtatCommande(etatCommande);
+		if(res == null) {
+			return (long) 0;
+		}else {
+		    return res;	
+		}
+		 
+	}
+
+
+
 }

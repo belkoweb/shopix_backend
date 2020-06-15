@@ -18,9 +18,9 @@ public class CategorieServiceImpl implements CategorieService {
 		return categorieDao.findByNom(categorie);
 	}
 	@Override
-	public Collection<Categorie> findAllByDomaine(Domaine domaine) {
-		
-		return categorieDao.findAllByDomaine(domaine);
+	public Collection<Categorie> findAll() {
+		// TODO Auto-generated method stub
+		return categorieDao.findAll();
 	}
 
 }

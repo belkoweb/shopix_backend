@@ -39,16 +39,12 @@ public class ShopixApplication implements CommandLineRunner {
 			domaineDao.save(domaine);
 			
 		});
-		
-		domaineDao.findAll().forEach(domaineName->{
 			Stream.of("PC", "Ihone", "Imprimante", "Robe").forEach(nameCategorie -> {
 				Categorie categorie = new Categorie();
 				categorie.setNom(nameCategorie);
-				categorie.setDomaine(domaineName);
 				categorieDao.save(categorie);
 				
 			});
-		});
 		Fournisseur fournisseur1 = new Fournisseur("f1","f1@gmail.com", "0645362788");
 		Fournisseur fournisseur2 = new Fournisseur("f2","f2@gmail.com", "0645454578");
 		Fournisseur fournisseur3 = new Fournisseur("f3","f3@gmail.com", "0677474743");

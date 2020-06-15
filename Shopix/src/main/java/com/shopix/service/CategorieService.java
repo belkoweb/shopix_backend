@@ -7,5 +7,5 @@ import com.shopix.beans.Domaine;
 
 public interface CategorieService {
 public Categorie findByNom(String categorie);
-public Collection<Categorie> findAllByDomaine(Domaine domaine);
+public Collection<Categorie> findAll();
 }
