@@ -24,6 +24,14 @@ import com.shopix.service.CommandeService;
 public class CommandeRest {
 @Autowired
 private CommandeService commandeService;
+@GetMapping("/etat/{etatCommande}")
+public Long countByEtatCommande(@PathVariable String etatCommande) {
+	return commandeService.countByEtatCommande(etatCommande);
+}
+@GetMapping("/nbrCommandes")
+public Long nbrCommandes() {
+	return commandeService.nbrCommandes();
+}
 @PostMapping("/email/{email}/password/{password}")
 public int save(@PathVariable String email,@PathVariable String password,@RequestBody Commande commande) {
 	return commandeService.save(email, password, commande);

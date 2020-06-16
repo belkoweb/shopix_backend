@@ -1,5 +1,7 @@
 package com.shopix.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,11 @@ public class DomaineServiceImpl implements DomaineService {
 	@Override
 	public Domaine findByNom(String nom) {
 		return domaineDao.findByNom(nom); 
+	}
+	@Override
+	public List<Domaine> findAll() {
+		// TODO Auto-generated method stub
+		return domaineDao.findAll();
 	}
 
 }

@@ -13,4 +13,5 @@ import com.shopix.beans.User;
 public interface CommandeDao  extends JpaRepository<Commande, Long>{
   public Commande findByref(String ref);
   public Collection<Commande> findAllByUser(User user);
+  public Long countByEtatCommande(String etatCommande);
 }

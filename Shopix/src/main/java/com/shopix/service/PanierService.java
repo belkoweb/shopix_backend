@@ -8,5 +8,6 @@ public interface PanierService {
     
 	public int save(Panier panier);
 	public Collection<Panier> findAll();
+
  
 }

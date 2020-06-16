@@ -92,6 +92,7 @@ public class CommandeServiceImpl implements CommandeService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public Commande update(Long id, Commande commande) {
 		commande.setId(id);
 		return commandeDao.save(commande);
@@ -101,5 +102,25 @@ public class CommandeServiceImpl implements CommandeService {
 	public void delete(Long id) {
 		commandeDao.deleteById(id);
 	}
+=======
+	public Long nbrCommandes() {
+		// TODO Auto-generated method stub
+		return commandeDao.count();
+	}
+
+	@Override
+	public Long countByEtatCommande(String etatCommande) {
+		// TODO Auto-generated method stub
+		Long res = commandeDao.countByEtatCommande(etatCommande);
+		if(res == null) {
+			return (long) 0;
+		}else {
+		    return res;	
+		}
+		 
+	}
+
+
+>>>>>>> branch 'master' of https://github.com/belkoweb/shopix_backend.git
 
 }

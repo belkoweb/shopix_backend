@@ -37,8 +37,7 @@ public class Commande {
 	    @OneToMany(mappedBy = "commande")
 	    @JsonProperty(access = Access.WRITE_ONLY)
 	    private Collection<CommandeItem> commandeItems;
-	    @ManyToOne
-	    private EtatCommande etatCommande;
+	    private String etatCommande;
 	    @OneToOne
 	    private Facture facture;
 	    @OneToMany(mappedBy = "commande")

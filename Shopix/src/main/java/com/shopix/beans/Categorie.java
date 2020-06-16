@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,9 +32,8 @@ public class Categorie {
 	    private String nom;
 	    private boolean active;
 	    @OneToMany(mappedBy = "categorie")
+	    @JsonProperty(access = Access.WRITE_ONLY)
         private Collection<Produit> produits;
-	    @ManyToOne
-	    private Domaine domaine;
 		public Categorie(String nom, boolean active) {
 			super();
 			this.nom = nom;
