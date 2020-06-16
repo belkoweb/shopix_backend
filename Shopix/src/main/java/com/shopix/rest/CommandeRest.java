@@ -5,9 +5,11 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,4 +41,13 @@ public Collection<Commande> findAllByUser(@RequestBody User user) {
 	return commandeService.findAllByUser(user);
 }
 
+@PutMapping("/id/{id}")
+public Commande update(@PathVariable Long id, @RequestBody Commande commande ) {
+	return commandeService.update(id, commande);
+}
+
+@DeleteMapping("/id/{id}")
+public void delete(@PathVariable Long id) {
+	commandeService.delete(id);
+}
 }

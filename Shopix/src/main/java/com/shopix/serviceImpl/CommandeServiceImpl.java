@@ -91,4 +91,15 @@ public class CommandeServiceImpl implements CommandeService {
 		}
 	}
 
+	@Override
+	public Commande update(Long id, Commande commande) {
+		commande.setId(id);
+		return commandeDao.save(commande);
+	}
+
+	@Override
+	public void delete(Long id) {
+		commandeDao.deleteById(id);
+	}
+
 }
