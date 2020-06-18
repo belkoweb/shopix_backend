@@ -36,9 +36,7 @@ public class User {
  @OneToMany(mappedBy = "user")
  @JsonProperty(access = Access.WRITE_ONLY)
  private Collection<Commande> commandes;
- @OneToMany(mappedBy = "user")
- @JsonProperty(access = Access.WRITE_ONLY)
- private Collection<UserRole>  userRoles;
+ private String  userRole;
  @OneToMany(mappedBy = "user")
  @JsonProperty(access = Access.WRITE_ONLY)
  private Collection<Adresse> adresses;

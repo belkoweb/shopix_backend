@@ -39,33 +39,38 @@ public class ShopixApplication implements CommandLineRunner {
 			domaineDao.save(domaine);
 			
 		});
-			Stream.of("PC", "Ihone", "Imprimante", "Robe").forEach(nameCategorie -> {
+			Stream.of("Informatique", "Ihone", "Imprimante", "Robe").forEach(nameCategorie -> {
 				Categorie categorie = new Categorie();
 				categorie.setNom(nameCategorie);
 				categorieDao.save(categorie);
 				
 			});
+			
 		Fournisseur fournisseur1 = new Fournisseur("f1","f1@gmail.com", "0645362788");
 		Fournisseur fournisseur2 = new Fournisseur("f2","f2@gmail.com", "0645454578");
 		Fournisseur fournisseur3 = new Fournisseur("f3","f3@gmail.com", "0677474743");
 	   fournisseurDao.save(fournisseur1);
 	   fournisseurDao.save(fournisseur2);
 	   fournisseurDao.save(fournisseur3);
-	   Produit p1 = new Produit("x-1","Accer 512 ","Accer","a gamer pc","assets/images/img-1.png",  2000);
-	   Produit p2 = new Produit("x-2","HP Omen", "HP","a gamer pc","assets/images/img-2.png", 3000);
-	   Produit p3 = new Produit("x-3","Macbook Pro", "Apple","a desktop pc", "assets/images/laptop.png",3000);
-	   Produit p4 = new Produit("x-4","Rog Strix G", "Asus","a desktop pc","assets/images/img-3.png", 4000);
-	   Produit p5 = new Produit("x-5","Iphone 11 Pro Max", "Apple","a desktop pc", "assets/images/img-4.png",5000);
-	   p3.setFournisseur(fournisseur2);
-	   p2.setFournisseur(fournisseur3);
-	   p1.setFournisseur(fournisseur1);
-	   p4.setFournisseur(fournisseur1);
-	   p5.setFournisseur(fournisseur2);
+	   // informatique
+	   Produit p1 = new Produit("x-1","Logitech Mouse M90","Logitech ","GREY - USB - N/A - EWR2","assets/images/1.png",75);
+	   Produit p2 = new Produit("x-2","HP Omen", "HP","PC Gamer","assets/images/img-2.png", 20000);
+	   Produit p3 = new Produit("x-3","Macbook Pro", "Apple","Laptop", "assets/images/laptop.png",20000);
+	   Produit p4 = new Produit("x-4","Rog Strix G", "Asus","PC Gamer","assets/images/img-3.png", 18000);
+	   Produit p5 = new Produit("x-5","Iphone 11 Pro Max", "Apple","Telephone Portable", "assets/images/img-4.png",12000);
+	   //Vêtements & Chaussures
+	   Produit p6 = new Produit("x-6","Fashion", "Fashion"," Chaussures de Ville pour Hommes", "assets/images/2.jpg",200);
+	   Produit p7 = new Produit("x-7","TUNIQUE À MANCHES COURTES", "Defacto","Couleur: Kaki", "assets/images/6.jpg",79);
+	   Produit p8 = new Produit("x-8","Daniel Wellington", "Daniel Wellington","Montre Pour Homme Classic Black Cornwall Silver 40Mm DW00100149 - TU", "assets/images/3.jpg",1849);
+	   Produit p9 = new Produit("x-9","Nike", "Nike","Survêtement pour Enfant - NIKE SPORTSWEAR", "assets/images/4.jpg",559);
+	   Produit p10 = new Produit("x-10","Defacto ROBE", "Defacto","BLEU MARINE", "assets/images/5.jpg",66);
+
 	   produitDao.save(p1);
 	   produitDao.save(p2);
 	   produitDao.save(p3);
 	   produitDao.save(p4);
 	   produitDao.save(p5);
+	   
 	   
 	   
 	   

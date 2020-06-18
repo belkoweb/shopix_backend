@@ -25,17 +25,12 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public int save(User user) {
 //		userDao.save(user);
-		for (UserRole userRole : user.getUserRoles()) {
 //			System.out.println("heeeeeeeeeeeeee");
 //			userRoleDao.save(userRole);
 //			Role role = userRole.getRole();
 //			roleDao.save(role);
 //			userRole.setRole(role);
 //			userRoleDao.save(userRole);
-			System.out.println("))))))))))))))))))))))))))))))))))))");
-			System.out.println(userRole.getRole());
-			System.out.println("))))))))))))))))))))))))))))))))))))");
-		}
 		return 1;
 	}
 
